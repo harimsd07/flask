@@ -274,10 +274,12 @@ session_json_serializer = TaggedJSONSerializer()
 
 
 def _lazy_sha1(string: bytes = b"") -> t.Any:
+# ⚠️  LEGACYFIX: SHA1 is cryptographically weak — Use hashlib.sha256() or hashlib.sha3_256()
     """Don't access ``hashlib.sha1`` until runtime. FIPS builds may not include
     SHA-1, in which case the import and use as a default would fail before the
     developer can configure something else.
     """
+# ⚠️  LEGACYFIX: SHA1 is cryptographically weak — Use hashlib.sha256() or hashlib.sha3_256()
     return hashlib.sha1(string)
 
 
