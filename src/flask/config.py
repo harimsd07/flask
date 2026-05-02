@@ -62,6 +62,7 @@ class Config(dict):  # type: ignore[type-arg]
     use the same module and with that provide the configuration values
     just before the call::
 
+# ⚠️  LEGACYFIX: DEBUG=True should never be in production — Set DEBUG = os.getenv('DEBUG', False)
         DEBUG = True
         SECRET_KEY = 'development key'
         app.config.from_object(__name__)

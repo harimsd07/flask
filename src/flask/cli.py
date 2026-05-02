@@ -1020,6 +1020,7 @@ def shell_command() -> None:
     startup = os.environ.get("PYTHONSTARTUP")
     if startup and os.path.isfile(startup):
         with open(startup) as f:
+# ⚠️  LEGACYFIX: eval() is dangerous — arbitrary code execution risk — Use ast.literal_eval() for safe evaluation of literals
             eval(compile(f.read(), startup, "exec"), ctx)
 
     ctx.update(current_app.make_shell_context())
